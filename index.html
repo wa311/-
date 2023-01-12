@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>デジタルスタンプラリー　プロトタイプ</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+      integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+      crossorigin=""/>
+      
+    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+      integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+      crossorigin=""></script>
+    <script src="js/leaflet.sprite.js"></script>
+  </head>
+  <body>
+    
+    <div id="map" style="height: 560px;">
+        
+    </div>
+    
+    <script type="text/javascript">
+     var myMap = L.map("map", {
+    zoom: 17, 
+    center: [34.68949912516827, 137.60288594892856],
+  });
+
+  
+  // タイルレイヤにはオープンストリートマップを拝借
+  var osm = L.tileLayer("https://tile.openstreetmap.jp/{z}/{x}/{y}.png", {
+    attribution: "<a href='https://www.openstreetmap.org/copyright'>OpenStreetMap</a> contributors"
+  });
+  osm.addTo(myMap);
+
+  // ○の画像
+  var icon_o = L.icon({ iconUrl: "地図上の画像/PIN黒.png",iconSize:[40,40], iconAnchor: [20,40] });
+
+  // ×の画像
+  var icon_x = L.icon({ iconUrl: "地図上の画像/PIN青.png", iconSize:[40,40],iconAnchor: [20, 40] });
+
+  var icon_t = L.icon({ iconUrl: "地図上の画像/タイトル.png",iconAnchor: [15, 15] });
+// coinの画像 複数画像を用いる場合
+  //var icon_c = L.icon({ iconUrl: "PIN黒.png", iconSize:[50,50],iconAnchor: [15, 15] });
+// emptyの画像
+  //var icon_e = L.icon({ iconUrl: "PIN青.png", iconSize:[50,50],iconAnchor: [15, 15] });
+
+  
+
+  // マーカー
+  var station = L.marker(
+    [34.69032328165986,137.603065616246],
+    {
+      icon: icon_o
+    }
+  );
+  station.addTo(myMap);
+
+  var kaiteiiseki = L.marker(
+    [34.68950510509187,137.6055317504966],
+    {
+      icon: icon_o
+    }
+  );
+  kaiteiiseki.addTo(myMap);
+
+  var hashishita = L.marker(
+    [34.68847768285994,137.60624447318128],
+    {
+      icon: icon_o
+    }
+  );
+  hashishita.addTo(myMap);
+
+  var yuuhi = L.marker(
+    [34.68782116448894, 137.60468821159117],
+    {
+      icon: icon_o
+    }
+  );
+  yuuhi.addTo(myMap);  
+
+  var jinnjya = L.marker(
+    [34.68903405025783, 137.60434087205496],
+    {
+      icon: icon_o
+    }
+  );
+  jinnjya.addTo(myMap); 
+
+  var station = L.marker(
+    [34.69032328165986,137.603065616246],
+    {
+      icon: icon_o
+    }
+  );
+  station.addTo(myMap);
+
+  var kyoukai = L.marker(
+    [34.68909146284353, 137.60285751467214],
+    {
+      icon: icon_o
+    }
+  );
+  kyoukai.addTo(myMap);
+  
+  var ikarise = L.marker(
+    [34.68865461612459, 137.60237053303118],
+    {
+      icon: icon_o
+    }
+  );
+  ikarise.addTo(myMap);
+
+  var beach = L.marker(
+    [34.689677945304716, 137.60102540520208],
+    {
+      icon: icon_o
+    }
+  );
+  beach.addTo(myMap);
+
+  var komichi = L.marker(
+    [34.69129021532998, 137.60001800326296],
+    {
+      icon: icon_o
+    }
+  );
+  komichi.addTo(myMap);
+
+  var hune = L.marker(
+    [34.6883932367659, 137.60363312483105],
+    {
+      icon: icon_o
+    }
+  );
+  hune.addTo(myMap);
+
+
+  // マーカーにクリックイベントをbind
+  //弁天島駅に関して
+  station.on('click', function(){
+
+    if (station.getIcon() === icon_o) {
+      // ○なら×を
+      station.setIcon(icon_x);
+      alert('スロットゲームで遊ぼう！！');
+      window.open('スタンプ帳/スタンプ帳.html', '1','top=50,left=700,width=800,height=500');
+      window.open("スロットアプリ/スロット.html", '2','top=50,left=10,width=400,height=500,resizable=no'); 
+    } else if (station.getIcon() === icon_x) {
+      // ×なら○を
+      alert('スタンプ獲得！！');
+     
+    } else {
+      //eroor
+      alert('error');
+    }
+  });  
+  station.bindPopup("弁天島駅");
+      station.on('mouseover', function(e) {
+        this.openPopup();
+      });
+      station.on('mouseout', function(e) {
+        this.closePopup();
+      });
+//ここまで弁天島駅に関して
+
+//海底遺跡に関して
+  kaiteiiseki.on('click', function(){
+
+if (kaiteiiseki.getIcon() === icon_o) {
+  
+  kaiteiiseki.setIcon(icon_x);
+  alert('海底遺跡で宝を探そう！！');
+  window.open('スタンプ帳/スタンプ帳.html', '1','top=50,left=700,width=800,height=500');
+  window.open('宝探しアプリ/海底遺跡宝探し.html', '2','top=50,left=10,width=400,height=500'); 
+} else if (kaiteiiseki.getIcon() === icon_x) {
+  
+  alert('スタンプ獲得！！');
+ 
+} else {
+  // え？
+  alert('Oh, my God!');
+}
+});
+kaiteiiseki.bindPopup("海底遺跡");
+      kaiteiiseki.on('mouseover', function(e) {
+        this.openPopup();
+      });
+      kaiteiiseki.on('mouseout', function(e) {
+        this.closePopup();
+      });
+//ここまで海底遺跡に関して
+
+//橋の下に関して
+hashishita.on('click', function(){
+if (hashishita.getIcon() === icon_o) {
+  
+  hashishita.setIcon(icon_x);
+  alert('下からの景色を楽しもう！！');
+  window.open('スタンプ帳/スタンプ帳.html', '1','top=50,left=700,width=800,height=500'); 
+  window.open('写真・情報/橋の下.html', '2','top=50,left=10,width=400,height=500'); 
+} else if (hashishita.getIcon() === icon_x) {
+  
+  alert('スタンプ獲得！！');
+  
+} else {
+  // え？
+  alert('Oh, my God!');
+}
+}); 
+
+hashishita.bindPopup("橋の下");
+      hashishita.on('mouseover', function(e) {
+        this.openPopup();
+      });
+      hashishita.on('mouseout', function(e) {
+        this.closePopup();
+      });
+//ここまで橋の下に関して
+
+//赤鳥居と夕日のスポット
+
+yuuhi.on('click', function(){
+
+if (yuuhi.getIcon() === icon_o) {
+  // ○なら×を
+  yuuhi.setIcon(icon_x);
+  alert('夕日と赤鳥居の絶景スポット！！');
+  window.open('スタンプ帳/スタンプ帳.html', '1','top=50,left=700,width=800,height=500');
+  window.open('写真・情報/赤鳥居と夕日.html', '2','top=50,left=10,width=400,height=500'); 
+} else if (yuuhi.getIcon() === icon_x) {
+  // ×なら○を
+  alert('スタンプ獲得！！');
+ 
+} else {
+  // え？
+  alert('Oh, my God!');
+}
+});  
+
+yuuhi.bindPopup("赤鳥居と夕日のスポット");
+      yuuhi.on('mouseover', function(e) {
+        this.openPopup();
+      });
+      yuuhi.on('mouseout', function(e) {
+        this.closePopup();
+      });
+
+//ここまで赤鳥居と夕日のスポット
+
+//辨天神社に関して
+
+jinnjya.on('click', function(){
+if (jinnjya.getIcon() === icon_o) {
+  
+  jinnjya.setIcon(icon_x);
+  alert('おみくじを引いて、運勢を占おう！！');
+  window.open('スタンプ帳/スタンプ帳.html', '1','top=50,left=700,width=800,height=500');
+  window.open('おみくじアプリ/おみくじ.html', '2','top=50,left=10,width=500,height=500');  
+} else if (jinnjya.getIcon() === icon_x) {
+  
+  alert('スタンプ獲得！！');
+  
+} else {
+  // え？
+  alert('Oh, my God!');
+}
+});    
+
+jinnjya.bindPopup("辨天神社");
+      jinnjya.on('mouseover', function(e) {
+        this.openPopup();
+      });
+      jinnjya.on('mouseout', function(e) {
+        this.closePopup();
+      });
+
+ //ここまで辨天神社に関して
+ 
+ //観光協会に関して
+
+kyoukai.on('click', function(){
+
+if (kyoukai.getIcon() === icon_o) {
+  // ○なら×を
+  kyoukai.setIcon(icon_x);
+  alert('観光協会でイベント情報を入手しよう！！');
+  window.open('スタンプ帳/スタンプ帳.html', '1','top=50,left=700,width=800,height=500');
+  window.open('写真・情報/観光協会.html', '2','top=50,left=10,width=400,height=650'); 
+  
+} else if (kyoukai.getIcon() === icon_x) {
+  // ×なら○を
+  alert('スタンプ獲得！！');
+ 
+} else {
+  // え？
+  alert('Oh, my God!');
+}
+});  
+
+kyoukai.bindPopup("舞阪町観光協会");
+      kyoukai.on('mouseover', function(e) {
+        this.openPopup();
+      });
+      kyoukai.on('mouseout', function(e) {
+        this.closePopup();
+      });
+
+      //ここまで観光協会に関して
+
+      //いかり瀬（桟橋に関して）
+
+ikarise.on('click', function(){
+
+if (ikarise.getIcon() === icon_o) {
+  // ○なら×を
+  ikarise.setIcon(icon_x);
+  alert('桟橋へ行き、浜名湖を感じよう！！');
+  window.open('スタンプ帳/スタンプ帳.html', '1','top=50,left=700,width=800,height=500');
+  window.open('写真・情報/桟橋.html', '2','top=50,left=10,width=400,height=500'); 
+  
+} else if (ikarise.getIcon() === icon_x) {
+  // ×なら○を
+  alert('スタンプ獲得！！');
+ 
+} else {
+  // え？
+  alert('Oh, my God!');
+}
+}); 
+
+ikarise.bindPopup("桟橋");
+      ikarise.on('mouseover', function(e) {
+        this.openPopup();
+      });
+      ikarise.on('mouseout', function(e) {
+        this.closePopup();
+      });
+
+      //ここまでいかり瀬（桟橋）に関して
+
+      //ビーチに関して
+
+beach.on('click', function(){
+
+if (beach.getIcon() === icon_o) {
+  // ○なら×を
+  beach.setIcon(icon_x);
+  alert('潮干狩りゲームで遊ぼう！！');
+  window.open('スタンプ帳/スタンプ帳.html', '1','top=50,left=700,width=800,height=500');
+  window.open('写真・情報/ビーチ.html', '2','top=50,left=10,width=400,height=500'); 
+  
+} else if (beach.getIcon() === icon_x) {
+  // ×なら○を
+  alert('スタンプ獲得！！');
+ 
+} else {
+  // え？
+  alert('Oh, my God!');
+}
+}); 
+
+beach.bindPopup("ビーチ");
+      beach.on('mouseover', function(e) {
+        this.openPopup();
+      });
+      beach.on('mouseout', function(e) {
+        this.closePopup();
+      });
+
+//ここまでビーチに関して
+
+//小道に関して
+
+komichi.on('click', function(){
+
+if (komichi.getIcon() === icon_o) {
+  // ○なら×を
+  komichi.setIcon(icon_x);
+  alert('知る人ぞ知る隠れスポットを知ろう！！');
+  window.open('スタンプ帳/スタンプ帳.html', '1','top=50,left=700,width=800,height=500');
+  window.open('写真・情報/小道.html', '2','top=50,left=10,width=400,height=500'); 
+  
+} else if (komichi.getIcon() === icon_x) {
+  // ×なら○を
+  alert('スタンプ獲得！！');
+ 
+} else {
+  // え？
+  alert('Oh, my God!');
+}
+}); 
+
+komichi.bindPopup("小道");
+      komichi.on('mouseover', function(e) {
+        this.openPopup();
+      });
+      komichi.on('mouseout', function(e) {
+        this.closePopup();
+      });
+
+      //ここまで小道に関して
+
+      //舟に関して
+
+hune.on('click', function(){
+
+if (hune.getIcon() === icon_o) {
+  // ○なら×を
+  hune.setIcon(icon_x);
+  alert('古代の漁で使われていた舟！！');
+  window.open('スタンプ帳/スタンプ帳.html', '1','top=50,left=700,width=800,height=500');
+  window.open('写真・情報/丸木舟.html', '2','top=50,left=10,width=400,height=500'); 
+  
+} else if (hune.getIcon() === icon_x) {
+  // ×なら○を
+  alert('スタンプ獲得！！');
+ 
+} else {
+  // え？
+  alert('Oh, my God!');
+}
+}); 
+
+hune.bindPopup("丸木舟");
+      hune.on('mouseover', function(e) {
+        this.openPopup();
+      });
+      hune.on('mouseout', function(e) {
+        this.closePopup();
+      });
+
+      //ここまで舟に関して
+
+      //センターマーカーに関して
+
+var crossIcon = L.icon({
+  iconUrl: "地図上の画像/歩く人.png",
+  iconSize: [32, 32], 
+  iconAnchor: [16, 16] 
+});
+
+var crossMarker = L.marker( myMap.getCenter(),{
+  icon:crossIcon,  
+  zIndexOffset:1000, 
+  interactive:false 
+}).addTo(myMap);
+
+function getgeo() {
+  myMap.on('locationerror', onLocationError);
+  myMap.locate({
+    setView: "true"
+  });
+}
+
+myMap.on('move', function(e) {
+  crossMarker.setLatLng(myMap.getCenter());
+});
+myMap.on('moveend', function(e) {
+console.log("緯度: " + myMap.getCenter().lat);
+console.log("経度: " + myMap.getCenter().lng);
+});
+
+function onLocationError(e) {
+  alert(e.message);
+}
+
+//ここまでセンターマーカーに関して
+
+//タイトルに関して
+
+var title= L.marker(
+    [34.69147033266647, 137.60669422357816],
+    {
+      icon: icon_t
+    }
+  );
+  title.addTo(myMap);
+
+    </script>
+    
+  </body>
+  <button onClick="getgeo()">現在地を取得</button>
+</html>
