@@ -1,0 +1,41 @@
+body {
+    background: linear-gradient(-45deg, rgba(105, 151, 212, 0.397), rgba(250, 250, 250, 0.922)),
+    url(images/shrine.png);
+    background-size: cover;
+    font-family: "HGP行書体";
+    height: 70%;
+  }
+  .container {
+    width: 50%;
+    margin: auto;
+    text-align: center;
+  }
+  h1 {
+    font-size: 2rem;
+    color: #eee;
+    text-shadow: 3px 0 #252525;
+  }
+  h2 {
+    font-size: 1rem;
+    color: #000000;
+    text-shadow: 3px 0 #f8f7f7;
+  }
+
+  button {
+    font-size: 1rem;
+    font-family: "HGP行書体";
+    color: #ffc0cb;
+    background-color: #f00;
+    margin: 10px;
+    padding: 5px;
+    border-radius: 10px;
+    transition-duration: 0.4s;
+    -webkit-transition-duration: 0.4s; /* Safari */
+  }
+  button:hover {
+    color: #fff;
+  }
+  .kuji {
+    width: 120%;
+    opacity: 360%;
+  }
