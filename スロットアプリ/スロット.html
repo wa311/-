@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>スロットゲーム</title>
+    <link rel="stylesheet" href="スロット.css"> 
+</head>
+<body>
+    <div class="container">
+<h1>スロットゲーム</h1>
+<h2>ボタンを押してスロットゲームを遊ぼう!!</h2>
+
+
+<script type="text/javascript"><!--
+myImageCnt = 3;                           // 画像の数
+myImage = new Array(                      // 画像ファイル名の設定
+ "画像/kuji1.gif",
+ "画像/kuji2.gif",
+ "画像/kuji3.gif"
+);
+myBuffer = new Array(myImageCnt);         // 画像イメージを収納するバッファ
+
+for(i=0; i<myImageCnt; i++){              // 画像イメージをメモリに取込む
+  myBuffer[i] = new Image();
+  myBuffer[i].src  = myImage[i];
+}
+
+myStartFlg = 0; // スタートボタンフラグ (0:動いていない 1:動いている)
+myStopFlg1 = 0; // ボタン1フラグ (-1:動いている 0～n:止まっている)
+myStopFlg2 = 0; // ボタン2フラグ (-1:動いている 0～n:止まっている)
+myStopFlg3 = 0; // ボタン3フラグ (-1:動いている 0～n:止まっている)
+
+function myStart(){     // ボタンが押された
+  if (myStartFlg == 0){ // 既に押していなければ、
+    myStartFlg = 1;     // スタート!
+    myStopFlg1 = -1;    // ボタン1回転!
+    myStopFlg2 = -1;    // ボタン2回転!
+    myStopFlg3 = -1;    // ボタン3回転!
+    myLoop();
+  }
+}
+
+function myLoop(){                                    // 回転させるルーチン
+  if (myStopFlg1==-1||myStopFlg2==-1||myStopFlg3==-1){// まだどこか回転しているか？
+    if (myStopFlg1==-1){                              // ボタン1は回転しているか？
+      myRnd = Math.floor(Math.random()*myImageCnt);   // 乱数を求める
+      document.myFormImg1.src = myBuffer[myRnd].src;  // 乱数番目の画像を表示する
+    }
+    if (myStopFlg2==-1){                              // ボタン2は回転しているか？
+      myRnd = Math.floor(Math.random()*myImageCnt);   // 乱数を求める
+      document.myFormImg2.src = myBuffer[myRnd].src;  // 乱数番目の画像を表示する
+    }
+    if (myStopFlg3==-1){                              // ボタン3は回転しているか？
+       myRnd = Math.floor(Math.random()*myImageCnt);  // 乱数を求める
+       document.myFormImg3.src = myBuffer[myRnd].src; // 乱数番目の画像を表示する
+    }
+    setTimeout( "myLoop()" , 50 );                    // ぐるぐる回転させる!
+  }else{
+    myStartFlg = 0;                                   // 全部止まった
+  }
+}
+
+function myStop1(){                                 // ボタン1が押された
+  if (myStopFlg1 == -1){                            // ボタン１は回転しているか？
+    myRnd = Math.floor(Math.random()*myImageCnt);   // 乱数を求める
+    document.myFormImg1.src = myBuffer[myRnd].src;  // 乱数番目の画像を表示する
+    myStopFlg1 = myRnd;                             // 止まった画像の番号を退避
+  }
+}
+function myStop2(){                                 // ボタン2が押された
+  if (myStopFlg2 == -1){                            // ボタン2は回転しているか？
+    myRnd = Math.floor(Math.random()*myImageCnt);   // 乱数を求める
+    document.myFormImg2.src = myBuffer[myRnd].src;  // 乱数番目の画像を表示する
+    myStopFlg2 = myRnd;                             // 止まった画像の番号を退避
+  }
+}
+function myStop3(){                                 // ボタン3が押された
+  if (myStopFlg3 == -1){                            // ボタン3は回転しているか？
+    myRnd = Math.floor(Math.random()*myImageCnt);   // 乱数を求める
+    document.myFormImg3.src = myBuffer[myRnd].src;  // 乱数番目の画像を表示する
+    myStopFlg3 = myRnd;                             // 止まった画像の番号を退避
+  }
+}
+// --></script>
+
+<table border="1">
+<tr>
+<td><img src="画像/kuji0.gif" name="myFormImg1"></td>
+<td><img src="画像/kuji0.gif" name="myFormImg2"></td>
+<td><img src="画像/kuji0.gif" name="myFormImg3"></td>
+</tr>
+<tr>
+<td><form><input type="button" value="STOP" onclick="myStop1()"></form></td>
+<td><form><input type="button" value="STOP" onclick="myStop2()"></form></td>
+<td><form><input type="button" value="STOP" onclick="myStop3()"></form></td>
+</tr>
+<tr>
+<td align="center" colspan="3">
+<form><input type="button" value="START" onclick="myStart()"></form>
+</td>
+</tr>
+</table>
+<h3>
+    弁天島駅は、浜名湖から2km足らずの距離にある駅である。そのため、駅から湖を見ることが出来る。浜名湖は海水交じりの汽水湖であるため、潮風を感じることが出来る。<br>
+    東海道線を走る列車の車窓から見える風景は浜名湖が最も美しかったといわれ、明治30年代後半には浜名湖の最寄の弁天島に停車駅を設置してほしいという声が多く寄せられた。そのため、鉄道庁では1906（明治39）年7月から夏の期間だけ列車を停車させる臨時停車駅として弁天島駅を開設した。
+  </h3>
+</body>
+</html>
